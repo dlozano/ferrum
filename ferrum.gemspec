@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.files         = Dir["{lib}/**/*"] + %w[LICENSE README.md]
 
-  s.required_ruby_version = ">= 2.3.0"
+  #s.required_ruby_version = ">= 2.3.0"
 
   s.add_runtime_dependency "websocket-driver", ">= 0.6", "< 0.8"
   s.add_runtime_dependency "cliver",           "~> 0.3"
