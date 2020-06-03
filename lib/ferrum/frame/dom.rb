@@ -37,7 +37,7 @@ module Ferrum
       end
 
       def xpath(selector, within: nil)
-        code = <<~JS
+        code = <<-JS
           let selector = arguments[0];
           let within = arguments[1] || document;
           let results = [];
@@ -54,7 +54,7 @@ module Ferrum
       end
 
       def at_xpath(selector, within: nil)
-        code = <<~JS
+        code = <<-JS
           let selector = arguments[0];
           let within = arguments[1] || document;
           let xpath = document.evaluate(selector, within, null, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
@@ -66,7 +66,7 @@ module Ferrum
       end
 
       def css(selector, within: nil)
-        code = <<~JS
+        code = <<-JS
           let selector = arguments[0];
           let within = arguments[1] || document;
           let results = within.querySelectorAll(selector);
@@ -77,7 +77,7 @@ module Ferrum
       end
 
       def at_css(selector, within: nil)
-        code = <<~JS
+        code = <<-JS
           let selector = arguments[0];
           let within = arguments[1] || document;
           let result = within.querySelector(selector);
