@@ -34,7 +34,7 @@ module Ferrum
         end
 
         on("Page.frameNavigated") do |params|
-          frame_id, name = params["frame"]&.values_at("id", "name")
+          frame_id, name = params["frame"].values_at("id", "name") if params["frame"]
           frame = @frames[frame_id]
           frame.state = :navigated
           frame.name = name unless name.to_s.empty?

@@ -18,7 +18,8 @@ module Ferrum
     end
 
     def find_by(target_id:)
-      @contexts.find { |_, c| c.targets.keys.include?(target_id) }&.last
+      found = @contexts.find { |_, c| c.targets.keys.include?(target_id) }
+      found && found.last
     end
 
     def create
@@ -50,7 +51,7 @@ module Ferrum
         next unless info["type"] == "page"
 
         context_id = info["browserContextId"]
-        @contexts[context_id]&.add_target(info)
+        @contexts[context_id].add_target(info) if @contexts[context_id]
       end
 
       @browser.client.on("Target.targetInfoChanged") do |params|
@@ -58,7 +59,7 @@ module Ferrum
         next unless info["type"] == "page"
 
         context_id, target_id = info.values_at("browserContextId", "targetId")
-        @contexts[context_id]&.update_target(target_id, info)
+        @contexts[context_id].update_target(target_id, info) if @contexts[context_id]
       end
 
       @browser.client.on("Target.targetDestroyed") do |params|
